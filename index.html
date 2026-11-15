@@ -22,34 +22,35 @@
             width: 1080px;
             height: 1920px;
             background-color: #ffffff;
-            padding: 35px 45px;
-            display: grid;
-            grid-template-rows: auto auto 1.2fr auto auto;
+            padding: 40px 50px;
+            display: flex;
+            flex-direction: column;
             gap: 20px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.25);
             overflow: hidden;
         }
 
         /* --- ENCABEZADO --- */
-        .header { text-align: center; }
-        .header h1 { font-size: 38px; color: #1e3a8a; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; line-height: 1.1; }
-        .header h2 { font-size: 16px; color: #475569; font-weight: 600; text-transform: uppercase; margin-top: 5px; }
+        .header { text-align: center; flex-shrink: 0; margin-bottom: 10px;}
+        .header h1 { font-size: 44px; color: #1e3a8a; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; line-height: 1.1; }
+        .header h2 { font-size: 20px; color: #475569; font-weight: 600; text-transform: uppercase; margin-top: 8px; }
 
         /* --- SECCIÓN 1: DEFINICIONES BASE --- */
         .definiciones-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 20px;
+            flex-shrink: 0;
         }
 
         .card-def {
             background-color: #f8fafc;
-            border-left: 5px solid #3b82f6;
+            border-left: 6px solid #3b82f6;
             border-radius: 8px;
-            padding: 18px 22px;
+            padding: 20px 25px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: center; /* Centra el contenido sin dejar huecos */
         }
 
         .card-def:nth-child(2) { border-left-color: #8b5cf6; }
@@ -57,21 +58,23 @@
         .card-def:nth-child(4) { border-left-color: #f59e0b; }
 
         .card-def h3 {
-            font-size: 16px;
+            font-size: 19px;
             font-weight: 800;
             color: #1e293b;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
-        .card-def h3 svg { width: 20px; height: 20px; stroke: #1e293b; stroke-width: 2; fill: none; }
-        .card-def p { font-size: 13.5px; color: #334155; line-height: 1.5; text-align: justify; margin-bottom: 8px; }
+        .card-def h3 svg { width: 24px; height: 24px; stroke: #1e293b; stroke-width: 2; fill: none; }
+        
+        /* Aumento de tamaño de letra y justificación */
+        .card-def p { font-size: 16px; color: #334155; line-height: 1.6; text-align: justify; margin-bottom: 12px; }
         
         .card-def .cita {
-            font-size: 11.5px;
+            font-size: 14px;
             font-weight: bold;
             font-style: italic;
             color: #1e3a8a;
@@ -83,89 +86,89 @@
         .paradigmas-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            height: 100%;
+            gap: 20px;
+            flex-grow: 1; /* Hace que esta sección ocupe el espacio central */
         }
 
         .card-para {
             background-color: #ffffff;
             border: 2px solid #e2e8f0;
             border-radius: 12px;
-            padding: 22px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centra el contenido verticalmente eliminando el hueco */
+            justify-content: space-evenly; /* Distribuye el título, texto y cita uniformemente */
         }
 
-        .card-para:nth-child(1) { border-top: 6px solid #60a5fa; }
-        .card-para:nth-child(2) { border-top: 6px solid #a78bfa; }
-        .card-para:nth-child(3) { border-top: 6px solid #34d399; }
-        .card-para:nth-child(4) { border-top: 6px solid #fbbf24; }
+        .card-para:nth-child(1) { border-top: 8px solid #60a5fa; }
+        .card-para:nth-child(2) { border-top: 8px solid #a78bfa; }
+        .card-para:nth-child(3) { border-top: 8px solid #34d399; }
+        .card-para:nth-child(4) { border-top: 8px solid #fbbf24; }
 
         .card-para h3 {
-            font-size: 17px;
+            font-size: 20px;
             font-weight: 800;
             color: #0f172a;
             text-transform: uppercase;
-            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid #f1f5f9;
-            padding-bottom: 8px;
+            gap: 10px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
         }
 
-        .card-para h3 svg { width: 22px; height: 22px; stroke: #0f172a; stroke-width: 2; fill: none; }
+        .card-para h3 svg { width: 26px; height: 26px; stroke: #0f172a; stroke-width: 2; fill: none; }
 
+        /* Texto conceptual corto, pero con letra grande y bien espaciada */
         .card-para p { 
-            font-size: 14px; 
+            font-size: 16.5px; 
             color: #334155; 
-            line-height: 1.6; 
+            line-height: 1.7; 
             text-align: justify; 
-            margin-bottom: 12px; /* Separación natural entre texto y cita */
         }
 
         .card-para .cita { 
-            font-size: 11.5px; 
+            font-size: 14px; 
             font-weight: bold; 
             font-style: italic; 
             color: #1e3a8a; 
             text-align: right; 
-            /* Eliminado el margin-top: auto que causaba el hueco */
         }
         .card-para .cita a { color: #1e3a8a; text-decoration: none; }
 
         /* --- SECCIÓN 3: TABLA COMPARATIVA --- */
         .diferencias-section {
+            flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
         }
 
         .diferencias-section h3 {
-            font-size: 16px;
+            font-size: 20px;
             font-weight: 800;
             color: #1e3a8a;
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-align: center;
         }
 
-        table { width: 100%; border-collapse: collapse; font-size: 12.5px; line-height: 1.5; }
-        th { background-color: #1e3a8a; color: #ffffff; padding: 12px 10px; text-align: left; font-weight: 700; border: 1px solid #1e3a8a; }
-        td { padding: 12px 10px; border: 1px solid #cbd5e1; color: #1e293b; vertical-align: top; text-align: justify; }
+        table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; }
+        th { background-color: #1e3a8a; color: #ffffff; padding: 15px 12px; text-align: left; font-weight: 700; border: 1px solid #1e3a8a; }
+        td { padding: 15px 12px; border: 1px solid #cbd5e1; color: #1e293b; vertical-align: top; text-align: justify; }
         tr:nth-child(even) { background-color: #f8fafc; }
         .dim { font-weight: 700; color: #1e3a8a; background-color: #f1f5f9; width: 18%; }
 
         /* --- PIE DE PÁGINA --- */
         .footer {
+            flex-shrink: 0;
             text-align: center;
-            border-top: 2px solid #e2e8f0;
+            border-top: 3px solid #e2e8f0;
             padding-top: 15px;
+            margin-top: auto;
         }
 
-        .footer p { font-size: 14px; color: #1e3a8a; font-weight: 800; margin-bottom: 4px; text-transform: uppercase; }
-        .footer .sub { font-size: 12px; color: #64748b; font-weight: 600; text-transform: none; margin-bottom: 0; }
+        .footer p { font-size: 16px; color: #1e3a8a; font-weight: 800; margin-bottom: 5px; text-transform: uppercase; }
+        .footer .sub { font-size: 14px; color: #64748b; font-weight: 600; text-transform: none; margin-bottom: 0; }
     </style>
 </head>
 <body>
@@ -202,26 +205,26 @@
             </div>
         </div>
 
-        <!-- SECCIÓN 2: TIPOS DE PARADIGMA (Textos Conceptuales Enriquecidos) -->
+        <!-- SECCIÓN 2: TIPOS DE PARADIGMA (Textos Cortos, Letra Grande) -->
         <div class="paradigmas-grid">
             <div class="card-para">
                 <h3><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg> Paradigma Positivista</h3>
-                <p>Se concibe como una aproximación donde la realidad es objetiva, externa y fragmentable. El investigador asume un rol neutral y distante, buscando establecer leyes generales mediante el método hipotético-deductivo. Su enfoque es predominantemente cuantitativo, utilizando la experimentación y la medición estadística rigurosa para explicar, predecir y controlar los fenómenos educativos, asumiendo que el conocimiento es acumulativo y verificable.</p>
+                <p>Concibe las teorías como verdades absolutas y la realidad como objetiva y fragmentable. El investigador es externo y neutral, sin influir en el objeto de estudio. Busca explicar, predecir y controlar mediante el enfoque cuantitativo y la medición estadística.</p>
                 <span class="cita">(<a href="https://zenodo.org/records/7719020" target="_blank">Acosta Faneite, 2023</a>)</span>
             </div>
             <div class="card-para">
                 <h3><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Paradigma Interpretativo</h3>
-                <p>Este paradigma sostiene que la realidad es construida socialmente a través de las subjetividades y significados de los actores. El investigador se sumerge en el contexto para comprender la complejidad de las acciones humanas desde una perspectiva holística. Emplea métodos cualitativos como la hermenéutica y la fenomenología, priorizando la comprensión profunda de los significados y la interpretación contextualizada sobre la generalización estadística.</p>
+                <p>La realidad se construye a partir de las subjetividades y significados de los sujetos. El investigador se implica en el contexto social y cultural. Utiliza el enfoque cualitativo, la hermenéutica y la fenomenología para comprender.</p>
                 <span class="cita">(<a href="https://zenodo.org/records/7719020" target="_blank">Acosta Faneite, 2023</a>)</span>
             </div>
             <div class="card-para">
                 <h3><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Paradigma Sociocrítico</h3>
-                <p>Se fundamenta en la teoría crítica, orientándose hacia la emancipación y la transformación de las estructuras de poder opresoras. El conocimiento no es neutral; surge de la reflexión crítica y la acción participativa (praxis). El investigador se compromete éticamente, utilizando métodos dialécticos como la investigación-acción para empoderar a las comunidades, fomentar la conciencia crítica y generar cambios sociales significativos.</p>
+                <p>Orientado a la emancipación y transformación de las estructuras sociales opresoras. El conocimiento se construye desde la reflexión crítica y la acción participativa. Utiliza métodos dialécticos, como la investigación-acción, para el cambio social.</p>
                 <span class="cita">(<a href="https://zenodo.org/records/7719020" target="_blank">Acosta Faneite, 2023</a>)</span>
             </div>
             <div class="card-para">
                 <h3><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Paradigma Emergente</h3>
-                <p>Inspirado en la teoría de la complejidad y el pensamiento sistémico, este paradigma visualiza la realidad educativa como un sistema dinámico, interconectado y multidimensional. Supera la dicotomía entre lo cuantitativo y cualitativo, apostando por la transdisciplinariedad y la multicausalidad. Busca abordar los desafíos contemporáneos de manera integral, reconociendo la incertidumbre y la emergencia como partes constitutivas del proceso investigativo.</p>
+                <p>Basado en la teoría de la complejidad y el pensamiento sistémico. Aborda la realidad educativa como un sistema dinámico e interconectado. Supera la fragmentación cuantitativa/cualitativa buscando la transdisciplinariedad.</p>
                 <span class="cita">(<a href="https://revistas.utn.ac.cr/index.php/arje/article/view/724" target="_blank">Tiffer, 2024</a>)</span>
             </div>
         </div>
