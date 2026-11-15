@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infografía Timeline - Fundamentos de la Investigación</title>
+    <title>Infografía Mapa - Fundamentos de la Investigación</title>
     <style>
-        /* RESET Y CONFIGURACIÓN EXACTA 1080x1920 */
+        /* RESET Y LIENZO EXACTO (1080x1920) */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -18,19 +18,19 @@
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             padding: 20px;
         }
 
         .canvas {
             width: 1080px;
             height: 1920px;
-            background-color: #f8fafc; /* Fondo general claro */
-            padding: 40px 50px;
+            background-color: #ffffff; /* Fondo blanco impecable */
+            padding: 40px 50px 30px 50px;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            overflow: hidden; /* Evita cualquier desbordamiento */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
             position: relative;
         }
 
@@ -39,187 +39,209 @@
             text-align: center;
             margin-bottom: 20px;
             flex-shrink: 0;
+            z-index: 10;
         }
 
         .header h1 {
-            font-size: 46px;
+            font-size: 48px;
             color: #1e3a8a; /* Azul oscuro formal */
             font-weight: 900;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 5px;
+            line-height: 1.1;
         }
 
         .header h2 {
-            font-size: 22px;
-            color: #475569;
-            font-weight: 700;
+            font-size: 20px;
+            color: #64748b;
+            font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
+            margin-top: 5px;
         }
 
-        /* --- LÍNEA DE TIEMPO (Ocupa el resto del espacio) --- */
-        .timeline-container {
-            flex: 1; /* Toma todo el alto sobrante */
+        /* --- ÁREA DE LA LÍNEA DE TIEMPO (MAPA) --- */
+        .timeline-area {
+            flex: 1;
+            position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Distribuye los 8 items sin dejar vacíos */
-            position: relative;
-            padding-left: 100px; /* Espacio para la línea vertical */
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        /* Línea vertical principal */
-        .timeline-line {
-            position: absolute;
-            left: 40px;
-            top: 20px;
-            bottom: 20px;
-            width: 4px;
-            background-color: #3b82f6; /* Azul pastel/medio */
-            border-radius: 2px;
-            z-index: 1;
-        }
-
-        /* --- BLOQUES DE CONTENIDO --- */
-        .item {
-            position: relative;
-            padding: 15px 25px;
-            border-radius: 15px;
+            justify-content: space-between; /* Distribuye los 8 bloques equitativamente */
+            padding: 10px 0 10px 100px; /* Espacio a la izquierda para el mapa */
             z-index: 2;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Dibujo SVG del Mapa de fondo */
+        .map-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120px; /* Solo ocupa la franja izquierda */
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* --- TARJETAS DE CONTENIDO --- */
+        .card {
+            position: relative;
+            width: 100%;
+            padding: 20px 25px;
+            border-radius: 16px;
+            z-index: 3;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            /* Animación sutil de carga */
+            animation: fadeIn 0.8s ease-out forwards;
         }
 
-        /* Conectores horizontales de la línea al bloque */
-        .item::before {
+        /* Conectores horizontales de la línea de mapa a la tarjeta */
+        .card::before {
             content: '';
             position: absolute;
-            left: -60px; /* Llega hasta la línea vertical */
+            left: -50px; /* Toca la línea del mapa */
             top: 50%;
             transform: translateY(-50%);
-            width: 60px;
-            height: 2px;
-            background-color: #3b82f6;
-            z-index: 1;
+            width: 50px;
+            height: 3px;
+            background-color: #1e3a8a;
+            z-index: 2;
         }
 
-        /* Puntos en la línea vertical */
-        .item::after {
+        /* Nodo conector (el circulito en la línea) */
+        .card::after {
             content: '';
             position: absolute;
-            left: -65px;
+            left: -55px;
             top: 50%;
             transform: translateY(-50%);
-            width: 14px;
-            height: 14px;
-            background-color: #f8fafc;
-            border: 4px solid #3b82f6;
+            width: 12px;
+            height: 12px;
+            background-color: #ffffff;
+            border: 4px solid #1e3a8a;
             border-radius: 50%;
-            z-index: 3;
+            z-index: 4;
         }
 
-        /* Tonos Pasteles (Alternados) */
-        /* 1. Fondo pastel muy claro, texto negro */
-        .bg-light-1 { background-color: #e0e7ff; border-left: 8px solid #3b82f6; }
-        .bg-light-2 { background-color: #dbeafe; border-left: 8px solid #2563eb; }
-        .bg-light-3 { background-color: #bfdbfe; border-left: 8px solid #1d4ed8; }
-        .bg-light-4 { background-color: #eff6ff; border-left: 8px solid #3b82f6; }
-        
-        /* 2. Fondo pastel un poco más oscuro, texto blanco */
-        .bg-dark-1 { background-color: #60a5fa; border-left: 8px solid #1e3a8a; color: white; }
-        .bg-dark-2 { background-color: #3b82f6; border-left: 8px solid #1e3a8a; color: white; }
+        /* --- ALTERNANCIA DE ESTILOS (SÓLIDO / DELINEADO) --- */
+        /* Tarjetas Impares: Azul Oscuro, Letra Blanca */
+        .card:nth-child(odd) {
+            background-color: #1e3a8a;
+            color: #ffffff;
+            border: 3px solid #1e3a8a;
+        }
 
-        /* Tipografía de los bloques */
-        .item h3 {
+        /* Tarjetas Pares: Blanco, Borde Azul, Letra Negra */
+        .card:nth-child(even) {
+            background-color: #ffffff;
+            color: #000000;
+            border: 3px solid #1e3a8a;
+        }
+
+        /* --- ICONOS PROFESIONALES (ESTILO LÍNEA) --- */
+        .icon-box {
+            position: absolute;
+            top: -24px; /* Se sobrepone al borde superior */
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background-color: #ffffff;
+            border: 3px solid #1e3a8a;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+        }
+
+        .card:nth-child(odd) .icon-box {
+            background-color: #ffffff; /* Contraste sobre fondo oscuro */
+        }
+
+        .icon-box svg {
+            width: 26px;
+            height: 26px;
+            stroke: #1e3a8a;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* --- TIPOGRAFÍA INTERNA --- */
+        .card-title-row {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+            padding-right: 50px; /* Evita chocar con el icono */
+        }
+
+        .card-number {
+            font-size: 36px;
+            font-weight: 900;
+            margin-right: 15px;
+            opacity: 0.9;
+        }
+
+        .card:nth-child(odd) .card-number { color: #93c5fd; } /* Azul claro para contraste */
+        .card:nth-child(even) .card-number { color: #1e3a8a; }
+
+        .card h3 {
             font-size: 20px;
             font-weight: 800;
             text-transform: uppercase;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
+            margin: 0;
+            line-height: 1.1;
         }
 
-        /* Número grande como en la plantilla */
-        .item h3 span.num {
-            font-size: 28px;
-            margin-right: 12px;
-            opacity: 0.6;
-            font-weight: 900;
-        }
-
-        .item p {
+        .card p {
             font-size: 14.5px;
             line-height: 1.45;
             text-align: justify;
-            margin: 0;
+            margin-bottom: 6px;
         }
 
-        .item .autor {
-            display: block;
+        .card .autor {
             font-size: 12px;
             font-style: italic;
-            margin-top: 6px;
+            font-weight: bold;
             text-align: right;
-            opacity: 0.8;
+            margin-top: auto;
         }
 
-        /* Textos negros o blancos según el fondo */
-        .bg-light-1 p, .bg-light-2 p, .bg-light-3 p, .bg-light-4 p,
-        .bg-light-1 h3, .bg-light-2 h3, .bg-light-3 h3, .bg-light-4 h3,
-        .bg-light-1 .autor, .bg-light-2 .autor, .bg-light-3 .autor, .bg-light-4 .autor {
-            color: #000000;
-        }
-
-        .bg-dark-1 p, .bg-dark-2 p,
-        .bg-dark-1 h3, .bg-dark-2 h3,
-        .bg-dark-1 .autor, .bg-dark-2 .autor {
-            color: #ffffff;
-        }
+        .card:nth-child(odd) .autor { color: #bfdbfe; }
+        .card:nth-child(even) .autor { color: #1e3a8a; }
 
         /* --- PIE DE PÁGINA --- */
         .footer {
             flex-shrink: 0;
             text-align: center;
-            border-top: 2px solid #cbd5e1;
             padding-top: 15px;
+            border-top: 2px solid #e2e8f0;
+            margin-top: 10px;
+            z-index: 10;
         }
 
         .footer p {
             font-size: 16px;
             color: #1e3a8a;
-            font-weight: bold;
-            margin: 4px 0;
+            font-weight: 800;
+            margin: 3px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .footer .subtitle {
-            font-size: 14px;
-            color: #475569;
-            font-weight: normal;
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
         }
 
-        /* Iconos sobre la línea (Simulando los de la plantilla) */
-        .icon-container {
-            position: absolute;
-            left: -30px; /* Centrado sobre la línea */
-            top: 50%;
-            transform: translateY(-50%);
-            width: 24px;
-            height: 24px;
-            background-color: #f8fafc;
-            z-index: 4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .icon-container svg {
-            width: 20px;
-            height: 20px;
-            fill: #3b82f6;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -229,98 +251,119 @@
         
         <!-- ENCABEZADO -->
         <div class="header">
-            <h1>FUNDAMENTOS</h1>
-            <h2>INVESTIGACIÓN CIENTÍFICA EN EDUCACIÓN UNIVERSITARIA</h2>
+            <h1>Fundamentos de la<br>Investigación Científica</h1>
+            <h2>Maestría en Docencia Universitaria | PRESAV - UNELLEZ</h2>
         </div>
 
-        <!-- LÍNEA DE TIEMPO -->
-        <div class="timeline-container">
-            <div class="timeline-line"></div>
+        <!-- LÍNEA DE TIEMPO (MAPA) -->
+        <div class="timeline-area">
+            
+            <!-- SVG de la ruta curveada -->
+            <svg class="map-svg" viewBox="0 0 120 1800" preserveAspectRatio="none">
+                <path d="M 50,0 C 100,150 10,300 50,450 C 90,600 10,750 50,900 C 100,1050 10,1200 50,1350 C 90,1500 10,1650 50,1800" 
+                      stroke="#1e3a8a" stroke-width="5" fill="none" stroke-linecap="round" />
+            </svg>
 
-            <!-- 1. Ciencia -->
-            <div class="item bg-light-1">
-                <div class="icon-container">
-                    <!-- Icono: Lupa -->
-                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <!-- 1. Ciencia (Oscuro) -->
+            <div class="card">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
                 </div>
-                <h3><span class="num">01</span> ¿QUÉ ES CIENCIA?</h3>
-                <p>Conjunto de conocimientos objetivos, sistemáticos y verificables sobre la naturaleza y la sociedad. Articula la observación rigurosa con la razón para explicar, predecir y comprender los fenómenos de la realidad.</p>
+                <div class="card-title-row">
+                    <span class="card-number">01</span>
+                    <h3>¿Qué es Ciencia?</h3>
+                </div>
+                <p>Conjunto de conocimientos objetivos, sistemáticos y verificables sobre la naturaleza y la sociedad. Articula la observación rigurosa con la razón para explicar, predecir y comprender los fenómenos.</p>
                 <span class="autor">(Estrada y Estrada, 2022)</span>
             </div>
 
-            <!-- 2. Conocimiento -->
-            <div class="item bg-dark-1">
-                <div class="icon-container">
-                    <!-- Icono: Libro -->
-                    <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+            <!-- 2. Conocimiento (Claro) -->
+            <div class="card">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                 </div>
-                <h3><span class="num">02</span> ¿QUÉ ES CONOCIMIENTO?</h3>
-                <p>Producto del proceso donde el sujeto aprehende la realidad. Al someterse al rigor metodológico, trasciende el sentido común y se valida como conocimiento científico dentro de una comunidad académica.</p>
+                <div class="card-title-row">
+                    <span class="card-number">02</span>
+                    <h3>¿Qué es Conocimiento?</h3>
+                </div>
+                <p>Producto del proceso donde el sujeto aprehende la realidad. Al someterse al rigor metodológico, trasciende el sentido común y se valida como conocimiento científico.</p>
                 <span class="autor">(Sánchez-Martín, 2023)</span>
             </div>
 
-            <!-- 3. Método Científico -->
-            <div class="item bg-light-2">
-                <div class="icon-container">
-                    <!-- Icono: Engranaje -->
-                    <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
+            <!-- 3. Método (Oscuro) -->
+            <div class="card">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                 </div>
-                <h3><span class="num">03</span> MÉTODO CIENTÍFICO</h3>
+                <div class="card-title-row">
+                    <span class="card-number">03</span>
+                    <h3>Método Científico</h3>
+                </div>
                 <p>Proceso sistemático que parte de la observación, formula hipótesis y las verifica mediante datos. Garantiza que el conocimiento generado sea riguroso, replicable y fundamentado.</p>
                 <span class="autor">(Estrada y Estrada, 2022)</span>
             </div>
 
-            <!-- 4. Paradigma -->
-            <div class="item bg-light-3">
-                <div class="icon-container">
-                    <!-- Icono: Ojo -->
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            <!-- 4. Paradigma (Claro) -->
+            <div class="card">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </div>
-                <h3><span class="num">04</span> ¿QUÉ ES PARADIGMA?</h3>
+                <div class="card-title-row">
+                    <span class="card-number">04</span>
+                    <h3>¿Qué es Paradigma?</h3>
+                </div>
                 <p>Suposiciones interrelacionadas sobre el mundo social que dan un marco filosófico a la investigación. Es la cosmovisión compartida por la comunidad científica que dicta el qué, cómo y para qué se investiga.</p>
                 <span class="autor">(Miranda y Ortiz, 2020)</span>
             </div>
 
-            <!-- 5. Positivista -->
-            <div class="item bg-light-4">
-                <div class="icon-container">
-                    <!-- Icono: Gráfico -->
-                    <svg viewBox="0 0 24 24"><path d="M3 3v18h18v-2H5V3H3zm4 14h2v-8H7v8zm4 0h2V9h-2v8zm4 0h2v-4h-2v4z"/></svg>
+            <!-- 5. Positivista (Oscuro) -->
+            <div class="card">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
                 </div>
-                <h3><span class="num">05</span> PARADIGMA POSITIVISTA</h3>
-                <p>Concibe las teorías como verdades absolutas. La realidad es objetiva y fragmentable. El investigador es neutral. Busca explicar, predecir y controlar mediante el enfoque cuantitativo, la medición y la estadística.</p>
+                <div class="card-title-row">
+                    <span class="card-number">05</span>
+                    <h3>Positivista</h3>
+                </div>
+                <p>Concibe las teorías como verdades absolutas. La realidad es objetiva y fragmentable. El investigador es neutral. Busca explicar, predecir y controlar mediante el enfoque cuantitativo y la estadística.</p>
                 <span class="autor">(Miranda y Ortiz, 2020)</span>
             </div>
 
-            <!-- 6. Interpretativo -->
-            <div class="item bg-dark-2">
-                <div class="icon-container">
-                    <!-- Icono: Personas/Diálogo -->
-                    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+            <!-- 6. Interpretativo (Claro) -->
+            <div class="card">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 </div>
-                <h3><span class="num">06</span> PARADIGMA INTERPRETATIVO</h3>
+                <div class="card-title-row">
+                    <span class="card-number">06</span>
+                    <h3>Interpretativo</h3>
+                </div>
                 <p>Construcción de la realidad en las subjetividades. Busca comprender el significado de las acciones humanas. El investigador se implica, usando enfoques cualitativos como la hermenéutica.</p>
                 <span class="autor">(Miranda y Ortiz, 2020)</span>
             </div>
 
-            <!-- 7. Sociocrítico -->
-            <div class="item bg-light-1">
-                <div class="icon-container">
-                    <!-- Icono: Corazón (Emancipación) -->
-                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            <!-- 7. Sociocrítico (Oscuro) -->
+            <div class="card">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
                 </div>
-                <h3><span class="num">07</span> PARADIGMA SOCIOCRÍTICO</h3>
+                <div class="card-title-row">
+                    <span class="card-number">07</span>
+                    <h3>Sociocrítico</h3>
+                </div>
                 <p>Orientado a la emancipación y transformación social. La realidad está condicionada por estructuras de poder. El investigador es un agente de cambio comprometido que emplea la investigación-acción participativa.</p>
                 <span class="autor">(Miranda y Ortiz, 2020)</span>
             </div>
 
-            <!-- 8. Emergente -->
-            <div class="item bg-dark-1">
-                <div class="icon-container">
-                    <!-- Icono: Globo Terráqueo (Complejidad) -->
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            <!-- 8. Emergente (Claro) -->
+            <div class="card">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                 </div>
-                <h3><span class="num">08</span> PARADIGMA EMERGENTE</h3>
+                <div class="card-title-row">
+                    <span class="card-number">08</span>
+                    <h3>Emergente</h3>
+                </div>
                 <p>Paradigma de la complejidad. Aborda la realidad educativa como un sistema dinámico e interconectado. Supera la fragmentación cuantitativa/cualitativa buscando la transdisciplinariedad y la multicausalidad.</p>
                 <span class="autor">(Miranda y Ortiz, 2020)</span>
             </div>
@@ -330,7 +373,7 @@
         <!-- PIE DE PÁGINA -->
         <div class="footer">
             <p>Elaborado por: Douglas Ruiz (V-19.357.613) y Marian Morales (V-18.486.245)</p>
-            <p class="subtitle">Maestría en Ciencias de la Educación, Mención Docencia Universitaria | PRESAV - UNELLEZ</p>
+            <p class="subtitle">Subproyecto: Introducción a la Investigación | Módulo I</p>
         </div>
 
     </div>
