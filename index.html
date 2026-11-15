@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Infografía - Fundamentos de la Investigación Científica</title>
     <style>
-        /* LIENZO EXACTO 1080x1920 Y RESET */
+        /* LIENZO EXACTO 1080x1920 CON CSS GRID ESTRICTO */
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
             background-color: #cbd5e1;
             display: flex;
@@ -16,169 +17,225 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             padding: 20px;
         }
+
         .canvas {
             width: 1080px;
             height: 1920px;
             background-color: #ffffff;
-            padding: 30px 40px;
-            display: flex;
-            flex-direction: column;
+            padding: 35px 45px;
+            display: grid;
+            /* Asignación exacta de altura para cada sección */
+            grid-template-rows: auto auto 1fr auto auto;
+            gap: 18px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.25);
             overflow: hidden;
         }
 
-        /* ENCABEZADO COMPACTO */
-        .header { text-align: center; margin-bottom: 15px; flex-shrink: 0; }
-        .header h1 { font-size: 36px; color: #1e3a8a; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; line-height: 1; }
-        .header h2 { font-size: 15px; color: #475569; font-weight: 600; text-transform: uppercase; margin-top: 4px; }
+        /* --- ENCABEZADO --- */
+        .header { text-align: center; }
+        .header h1 { font-size: 38px; color: #1e3a8a; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; line-height: 1.1; }
+        .header h2 { font-size: 16px; color: #475569; font-weight: 600; text-transform: uppercase; margin-top: 5px; }
 
-        /* GRID DE DEFINICIONES BASE (4 TARJETAS) */
+        /* --- SECCIÓN 1: DEFINICIONES BASE --- */
         .definiciones-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 10px;
-            flex-shrink: 0;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
         }
+
         .card-def {
             background-color: #f8fafc;
-            border-left: 4px solid #3b82f6;
-            border-radius: 4px;
-            padding: 10px 14px;
+            border-left: 5px solid #3b82f6;
+            border-radius: 8px;
+            padding: 15px 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
         }
+
         .card-def:nth-child(2) { border-left-color: #8b5cf6; }
         .card-def:nth-child(3) { border-left-color: #10b981; }
         .card-def:nth-child(4) { border-left-color: #f59e0b; }
-        .card-def h3 { font-size: 14px; font-weight: 800; color: #1e293b; text-transform: uppercase; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
-        .card-def h3 svg { width: 16px; height: 16px; stroke: #1e293b; stroke-width: 2; fill: none; }
-        /* FORZAR UNA SOLA LÍNEA EN EL PÁRRAFO */
-        .card-def p { font-size: 12px; color: #334155; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .card-def .cita { font-size: 10px; font-weight: bold; font-style: italic; color: #1e3a8a; text-align: right; margin-top: 2px; white-space: nowrap; }
+
+        .card-def h3 {
+            font-size: 16px;
+            font-weight: 800;
+            color: #1e293b;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-def h3 svg { width: 20px; height: 20px; stroke: #1e293b; stroke-width: 2; fill: none; }
+        .card-def p { font-size: 13.5px; color: #334155; line-height: 1.4; text-align: justify; margin-bottom: 5px; }
+        
+        .card-def .cita {
+            font-size: 11.5px;
+            font-weight: bold;
+            font-style: italic;
+            color: #1e3a8a;
+            text-align: right;
+            margin-top: auto;
+        }
         .card-def .cita a { color: #1e3a8a; text-decoration: none; }
 
-        /* GRID DE TIPOS DE PARADIGMA (4 TARJETAS) */
+        /* --- SECCIÓN 2: TIPOS DE PARADIGMA (Expanden para llenar el espacio) --- */
         .paradigmas-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 10px;
-            flex: 1;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
         }
+
         .card-para {
             background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 10px 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
-        .card-para:nth-child(1) { border-top: 4px solid #60a5fa; }
-        .card-para:nth-child(2) { border-top: 4px solid #a78bfa; }
-        .card-para:nth-child(3) { border-top: 4px solid #34d399; }
-        .card-para:nth-child(4) { border-top: 4px solid #fbbf24; }
-        .card-para h3 { font-size: 13px; font-weight: 800; color: #0f172a; text-transform: uppercase; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
-        .card-para h3 svg { width: 18px; height: 18px; stroke: #0f172a; stroke-width: 2; fill: none; }
-        /* FORZAR UNA SOLA LÍNEA EN LA LISTA */
-        .card-para ul { list-style: none; padding: 0; margin: 0; font-size: 11.5px; color: #334155; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .card-para ul li { margin-bottom: 2px; padding-left: 10px; position: relative; }
-        .card-para ul li::before { content: '›'; position: absolute; left: 0; font-weight: bold; color: #1e3a8a; }
-        .card-para .cita { font-size: 10px; font-weight: bold; font-style: italic; color: #1e3a8a; text-align: right; margin-top: 2px; white-space: nowrap; }
+
+        .card-para:nth-child(1) { border-top: 6px solid #60a5fa; }
+        .card-para:nth-child(2) { border-top: 6px solid #a78bfa; }
+        .card-para:nth-child(3) { border-top: 6px solid #34d399; }
+        .card-para:nth-child(4) { border-top: 6px solid #fbbf24; }
+
+        .card-para h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: #0f172a;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 8px;
+        }
+
+        .card-para h3 svg { width: 24px; height: 24px; stroke: #0f172a; stroke-width: 2; fill: none; }
+
+        .card-para ul { list-style: none; padding: 0; margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5; flex-grow: 1; }
+        .card-para ul li { margin-bottom: 8px; padding-left: 16px; position: relative; text-align: justify; }
+        .card-para ul li::before { content: '›'; position: absolute; left: 0; font-weight: bold; font-size: 18px; color: #1e3a8a; line-height: 1.2; }
+
+        .card-para .cita { font-size: 11.5px; font-weight: bold; font-style: italic; color: #1e3a8a; text-align: right; margin-top: auto; }
         .card-para .cita a { color: #1e3a8a; text-decoration: none; }
 
-        /* TABLA COMPARATIVA COMPACTA */
-        .diferencias-section { flex-shrink: 0; margin-bottom: 10px; }
-        .diferencias-section h3 { font-size: 14px; font-weight: 800; color: #1e3a8a; text-transform: uppercase; margin-bottom: 4px; text-align: center; }
-        table { width: 100%; border-collapse: collapse; font-size: 10.5px; line-height: 1.2; }
-        th { background-color: #1e3a8a; color: #ffffff; padding: 4px 5px; text-align: left; font-weight: 700; border: 1px solid #1e3a8a; }
-        td { padding: 4px 5px; border: 1px solid #cbd5e1; color: #1e293b; vertical-align: top; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* --- SECCIÓN 3: TABLA COMPARATIVA --- */
+        .diferencias-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Empuja la tabla al fondo de su espacio */
+        }
+
+        .diferencias-section h3 {
+            font-size: 16px;
+            font-weight: 800;
+            color: #1e3a8a;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        table { width: 100%; border-collapse: collapse; font-size: 12px; line-height: 1.4; }
+        th { background-color: #1e3a8a; color: #ffffff; padding: 8px 10px; text-align: left; font-weight: 700; border: 1px solid #1e3a8a; }
+        td { padding: 8px 10px; border: 1px solid #cbd5e1; color: #1e293b; vertical-align: top; text-align: justify; }
         tr:nth-child(even) { background-color: #f8fafc; }
         .dim { font-weight: 700; color: #1e3a8a; background-color: #f1f5f9; width: 18%; }
 
-        /* PIE DE PÁGINA */
-        .footer { flex-shrink: 0; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 6px; margin-top: auto; }
-        .footer p { font-size: 12px; color: #1e3a8a; font-weight: 800; margin: 2px 0; text-transform: uppercase; white-space: nowrap; }
-        .footer .sub { font-size: 10px; color: #64748b; font-weight: 600; text-transform: none; }
+        /* --- PIE DE PÁGINA --- */
+        .footer {
+            text-align: center;
+            border-top: 2px solid #e2e8f0;
+            padding-top: 15px;
+        }
+
+        .footer p { font-size: 14px; color: #1e3a8a; font-weight: 800; margin-bottom: 4px; text-transform: uppercase; }
+        .footer .sub { font-size: 12px; color: #64748b; font-weight: 600; text-transform: none; margin-bottom: 0; }
     </style>
 </head>
 <body>
+
     <div class="canvas">
+        
         <!-- ENCABEZADO -->
         <div class="header">
-            <h1>Fundamentos de la Investigación Científica</h1>
+            <h1>Fundamentos de la<br>Investigación Científica</h1>
             <h2>Maestría en Docencia Universitaria | PRESAV - UNELLEZ</h2>
         </div>
 
-        <!-- DEFINICIONES BASE -->
+        <!-- SECCIÓN 1: DEFINICIONES BASE -->
         <div class="definiciones-grid">
             <div class="card-def">
                 <h3><svg viewBox="0 0 24 24"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg> ¿Qué es Ciencia?</h3>
-                <p>Conocimiento objetivo, sistemático y verificable de la realidad.</p>
+                <p>Conjunto de conocimientos objetivos, sistemáticos y verificables sobre la naturaleza y la sociedad. Articula la observación rigurosa con la razón para explicar los fenómenos.</p>
                 <span class="cita">(<a href="https://zenodo.org/records/7551869" target="_blank">Sánchez-Martín, 2023</a>)</span>
             </div>
             <div class="card-def">
                 <h3><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> ¿Qué es Conocimiento?</h3>
-                <p>Saber que trasciende el sentido común mediante el rigor metodológico.</p>
+                <p>Producto del proceso donde el sujeto aprehende la realidad. Al someterse al rigor metodológico, trasciende el sentido común y se valida en una comunidad académica.</p>
                 <span class="cita">(<a href="https://zenodo.org/records/7551869" target="_blank">Sánchez-Martín, 2023</a>)</span>
             </div>
             <div class="card-def">
                 <h3><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Método Científico</h3>
-                <p>Proceso sistemático de observación, hipótesis y verificación empírica.</p>
+                <p>Proceso sistemático que parte de la observación, formula hipótesis y las verifica mediante datos. Garantiza que el conocimiento generado sea riguroso, replicable y fundamentado.</p>
                 <span class="cita">(<a href="https://zenodo.org/records/7551869" target="_blank">Sánchez-Martín, 2023</a>)</span>
             </div>
             <div class="card-def">
                 <h3><svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg> ¿Qué es Paradigma?</h3>
-                <p>Modelo explicativo compartido que guía la investigación científica.</p>
+                <p>Suposiciones interrelacionadas sobre el mundo social que dan un marco filosófico a la investigación. Es la cosmovisión compartida que dicta el qué y cómo investigar.</p>
                 <span class="cita">(<a href="https://zenodo.org/records/7719020" target="_blank">Acosta Faneite, 2023</a>)</span>
             </div>
         </div>
 
-        <!-- TIPOS DE PARADIGMA -->
+        <!-- SECCIÓN 2: TIPOS DE PARADIGMA -->
         <div class="paradigmas-grid">
             <div class="card-para">
-                <h3><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg> Positivista</h3>
+                <h3><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg> Paradigma Positivista</h3>
                 <ul>
-                    <li>Verdades absolutas y realidad objetiva.</li>
-                    <li>Investigador neutral y externo.</li>
-                    <li>Enfoque cuantitativo y medición estadística.</li>
+                    <li>Concibe las teorías como verdades absolutas y la realidad como objetiva y fragmentable.</li>
+                    <li>El investigador es externo y neutral, sin influir en el objeto de estudio.</li>
+                    <li>Busca explicar, predecir y controlar mediante el enfoque cuantitativo y la medición estadística.</li>
                 </ul>
                 <span class="cita">(<a href="https://zenodo.org/records/7719020" target="_blank">Acosta Faneite, 2023</a>)</span>
             </div>
             <div class="card-para">
-                <h3><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Interpretativo</h3>
+                <h3><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Paradigma Interpretativo</h3>
                 <ul>
-                    <li>Realidad construida desde la subjetividad.</li>
-                    <li>Investigador implicado en el contexto.</li>
-                    <li>Enfoque cualitativo y hermenéutico.</li>
+                    <li>La realidad se construye a partir de las subjetividades y significados de los sujetos.</li>
+                    <li>El investigador se implica en el contexto social y cultural.</li>
+                    <li>Utiliza el enfoque cualitativo, la hermenéutica y la fenomenología para comprender.</li>
                 </ul>
                 <span class="cita">(<a href="https://zenodo.org/records/7719020" target="_blank">Acosta Faneite, 2023</a>)</span>
             </div>
             <div class="card-para">
-                <h3><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Sociocrítico</h3>
+                <h3><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Paradigma Sociocrítico</h3>
                 <ul>
-                    <li>Orientado a la emancipación y cambio social.</li>
-                    <li>Realidad condicionada por el poder.</li>
-                    <li>Investigación-acción participativa.</li>
+                    <li>Orientado a la emancipación y transformación de las estructuras sociales opresoras.</li>
+                    <li>El conocimiento se construye desde la reflexión crítica y la acción participativa.</li>
+                    <li>Utiliza métodos dialécticos, como la investigación-acción, para el cambio social.</li>
                 </ul>
                 <span class="cita">(<a href="https://zenodo.org/records/7719020" target="_blank">Acosta Faneite, 2023</a>)</span>
             </div>
             <div class="card-para">
-                <h3><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Emergente</h3>
+                <h3><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Paradigma Emergente</h3>
                 <ul>
-                    <li>Paradigma de la complejidad.</li>
-                    <li>Sistema dinámico y multidimensional.</li>
-                    <li>Transdisciplinariedad e interconexión.</li>
+                    <li>Basado en la teoría de la complejidad y el pensamiento sistémico.</li>
+                    <li>Aborda la realidad educativa como un sistema dinámico e interconectado.</li>
+                    <li>Supera la fragmentación cuantitativa/cualitativa buscando la transdisciplinariedad.</li>
                 </ul>
                 <span class="cita">(<a href="https://revistas.utn.ac.cr/index.php/arje/article/view/724" target="_blank">Tiffer, 2024</a>)</span>
             </div>
         </div>
 
-        <!-- TABLA DE DIFERENCIAS -->
+        <!-- SECCIÓN 3: TABLA DE DIFERENCIAS -->
         <div class="diferencias-section">
-            <h3>Diferencias entre Tipos de Paradigma</h3>
+            <h3>Diferencias Resaltantes entre Tipos de Paradigma</h3>
             <table>
                 <thead>
                     <tr>
@@ -191,27 +248,27 @@
                 <tbody>
                     <tr>
                         <td class="dim">Discurso</td>
-                        <td>Técnico y objetivo</td>
-                        <td>Interpretativo y contextual</td>
-                        <td>Crítico y dialéctico</td>
+                        <td>Lenguaje técnico y objetivo, orientado a leyes.</td>
+                        <td>Lenguaje interpretativo y contextual.</td>
+                        <td>Lenguaje crítico, dialéctico y emancipador.</td>
                     </tr>
                     <tr>
                         <td class="dim">Enfoque</td>
-                        <td>Cuantitativo</td>
-                        <td>Cualitativo</td>
-                        <td>Dialéctico y participativo</td>
+                        <td>Cuantitativo e hipotético-deductivo.</td>
+                        <td>Cualitativo, inductivo y holístico.</td>
+                        <td>Dialéctico, participativo y transformador.</td>
                     </tr>
                     <tr>
                         <td class="dim">Método</td>
-                        <td>Experimentación y estadística</td>
-                        <td>Observación y entrevistas</td>
-                        <td>Investigación-acción</td>
+                        <td>Experimentación, encuestas y estadística.</td>
+                        <td>Observación participante, entrevistas y análisis del discurso.</td>
+                        <td>Investigación-acción, estudio de casos y técnicas dialógicas.</td>
                     </tr>
                     <tr>
                         <td class="dim">Relación investigador</td>
-                        <td>Neutral y externo</td>
-                        <td>Implicado y subjetivo</td>
-                        <td>Comprometido y transformador</td>
+                        <td>Independencia y neutralidad total.</td>
+                        <td>Interrelación y subjetividad compartida.</td>
+                        <td>Compromiso ético y transformación social.</td>
                     </tr>
                 </tbody>
             </table>
@@ -222,6 +279,8 @@
             <p>Elaborado por: Douglas Ruiz (V-19.357.613) y Marian Morales (V-18.486.245)</p>
             <p class="sub">Subproyecto: Introducción a la Investigación | Módulo I</p>
         </div>
+
     </div>
+
 </body>
 </html>
