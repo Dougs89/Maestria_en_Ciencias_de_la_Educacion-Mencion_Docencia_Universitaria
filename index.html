@@ -25,8 +25,8 @@
         .canvas {
             width: 1080px;
             height: 1920px;
-            background-color: #ffffff; /* Fondo blanco impecable */
-            padding: 40px 50px 30px 50px;
+            background-color: #ffffff;
+            padding: 30px 40px 20px 40px; /* Márgenes reducidos para maximizar espacio */
             display: flex;
             flex-direction: column;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
@@ -37,24 +37,24 @@
         /* --- ENCABEZADO --- */
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             flex-shrink: 0;
             z-index: 10;
         }
 
         .header h1 {
-            font-size: 48px;
-            color: #1e3a8a; /* Azul oscuro formal */
+            font-size: 44px;
+            color: #1e3a8a;
             font-weight: 900;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             line-height: 1.1;
         }
 
         .header h2 {
-            font-size: 20px;
-            color: #64748b;
-            font-weight: 600;
+            font-size: 18px;
+            color: #475569;
+            font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
             margin-top: 5px;
@@ -62,12 +62,12 @@
 
         /* --- ÁREA DE LA LÍNEA DE TIEMPO (MAPA) --- */
         .timeline-area {
-            flex: 1;
-            position: relative;
+            flex: 1; /* Toma todo el alto disponible */
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Distribuye los 8 bloques equitativamente */
-            padding: 10px 0 10px 100px; /* Espacio a la izquierda para el mapa */
+            gap: 12px; /* Separación mínima entre tarjetas */
+            padding-left: 110px; /* Espacio para el mapa curveado */
+            position: relative;
             z-index: 2;
         }
 
@@ -76,7 +76,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 120px; /* Solo ocupa la franja izquierda */
+            width: 120px;
             height: 100%;
             z-index: 1;
             pointer-events: none;
@@ -84,37 +84,36 @@
 
         /* --- TARJETAS DE CONTENIDO --- */
         .card {
+            flex: 1; /* Obliga a las tarjetas a estirarse para llenar el 100% del alto */
             position: relative;
             width: 100%;
-            padding: 20px 25px;
-            border-radius: 16px;
+            padding: 12px 20px;
+            border-radius: 12px;
             z-index: 3;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            /* Animación sutil de carga */
-            animation: fadeIn 0.8s ease-out forwards;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
         }
 
         /* Conectores horizontales de la línea de mapa a la tarjeta */
         .card::before {
             content: '';
             position: absolute;
-            left: -50px; /* Toca la línea del mapa */
+            left: -45px; /* Puentea el espacio hasta el mapa */
             top: 50%;
             transform: translateY(-50%);
-            width: 50px;
+            width: 45px;
             height: 3px;
             background-color: #1e3a8a;
             z-index: 2;
         }
 
-        /* Nodo conector (el circulito en la línea) */
+        /* Nodo conector en el mapa */
         .card::after {
             content: '';
             position: absolute;
-            left: -55px;
+            left: -50px;
             top: 50%;
             transform: translateY(-50%);
             width: 12px;
@@ -126,29 +125,27 @@
         }
 
         /* --- ALTERNANCIA DE ESTILOS (SÓLIDO / DELINEADO) --- */
-        /* Tarjetas Impares: Azul Oscuro, Letra Blanca */
         .card:nth-child(odd) {
-            background-color: #1e3a8a;
+            background-color: #1e3a8a; /* Azul oscuro formal */
             color: #ffffff;
-            border: 3px solid #1e3a8a;
+            border: 2px solid #1e3a8a;
         }
 
-        /* Tarjetas Pares: Blanco, Borde Azul, Letra Negra */
         .card:nth-child(even) {
             background-color: #ffffff;
             color: #000000;
-            border: 3px solid #1e3a8a;
+            border: 2px solid #1e3a8a;
         }
 
         /* --- ICONOS PROFESIONALES (ESTILO LÍNEA) --- */
         .icon-box {
             position: absolute;
-            top: -24px; /* Se sobrepone al borde superior */
-            right: 30px;
-            width: 48px;
-            height: 48px;
+            top: -18px; /* Sobre sale del borde */
+            right: 25px;
+            width: 42px;
+            height: 42px;
             background-color: #ffffff;
-            border: 3px solid #1e3a8a;
+            border: 2px solid #1e3a8a;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -156,15 +153,11 @@
             z-index: 5;
         }
 
-        .card:nth-child(odd) .icon-box {
-            background-color: #ffffff; /* Contraste sobre fondo oscuro */
-        }
-
         .icon-box svg {
-            width: 26px;
-            height: 26px;
+            width: 22px;
+            height: 22px;
             stroke: #1e3a8a;
-            stroke-width: 2;
+            stroke-width: 2.5;
             fill: none;
             stroke-linecap: round;
             stroke-linejoin: round;
@@ -174,22 +167,23 @@
         .card-title-row {
             display: flex;
             align-items: baseline;
-            margin-bottom: 8px;
-            padding-right: 50px; /* Evita chocar con el icono */
+            margin-bottom: 6px;
+            padding-right: 45px;
         }
 
         .card-number {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 900;
-            margin-right: 15px;
+            margin-right: 12px;
             opacity: 0.9;
+            line-height: 1;
         }
 
-        .card:nth-child(odd) .card-number { color: #93c5fd; } /* Azul claro para contraste */
+        .card:nth-child(odd) .card-number { color: #93c5fd; }
         .card:nth-child(even) .card-number { color: #1e3a8a; }
 
         .card h3 {
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 800;
             text-transform: uppercase;
             margin: 0;
@@ -197,18 +191,18 @@
         }
 
         .card p {
-            font-size: 14.5px;
-            line-height: 1.45;
+            font-size: 15px;
+            line-height: 1.5;
             text-align: justify;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .card .autor {
-            font-size: 12px;
+            font-size: 12.5px;
             font-style: italic;
             font-weight: bold;
             text-align: right;
-            margin-top: auto;
+            margin-top: auto; /* Empuja el autor al fondo de la tarjeta */
         }
 
         .card:nth-child(odd) .autor { color: #bfdbfe; }
@@ -218,30 +212,26 @@
         .footer {
             flex-shrink: 0;
             text-align: center;
-            padding-top: 15px;
+            padding-top: 10px;
             border-top: 2px solid #e2e8f0;
             margin-top: 10px;
             z-index: 10;
         }
 
         .footer p {
-            font-size: 16px;
+            font-size: 15px;
             color: #1e3a8a;
             font-weight: 800;
-            margin: 3px 0;
+            margin: 2px 0;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         .footer .subtitle {
             font-size: 13px;
             color: #64748b;
             font-weight: 600;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            text-transform: none;
         }
     </style>
 </head>
@@ -255,13 +245,14 @@
             <h2>Maestría en Docencia Universitaria | PRESAV - UNELLEZ</h2>
         </div>
 
-        <!-- LÍNEA DE TIEMPO (MAPA) -->
+        <!-- LÍNEA DE TIEMPO (MAPA CONTINUO) -->
         <div class="timeline-area">
             
-            <!-- SVG de la ruta curveada -->
-            <svg class="map-svg" viewBox="0 0 120 1800" preserveAspectRatio="none">
-                <path d="M 50,0 C 100,150 10,300 50,450 C 90,600 10,750 50,900 C 100,1050 10,1200 50,1350 C 90,1500 10,1650 50,1800" 
-                      stroke="#1e3a8a" stroke-width="5" fill="none" stroke-linecap="round" />
+            <!-- SVG del mapa curveado. preserveAspectRatio="none" hace que se adapte al 100% de la altura -->
+            <svg class="map-svg" viewBox="0 0 120 800" preserveAspectRatio="none">
+                <!-- Curva continua tipo serpiente que pasa por los 8 nodos -->
+                <path d="M 60,0 C 100,25 20,75 60,100 S 20,175 60,200 S 20,275 60,300 S 20,375 60,400 S 20,475 60,500 S 20,575 60,600 S 20,675 60,700 S 20,775 60,800" 
+                      stroke="#1e3a8a" stroke-width="4" fill="none" stroke-linecap="round" />
             </svg>
 
             <!-- 1. Ciencia (Oscuro) -->
@@ -273,7 +264,7 @@
                     <span class="card-number">01</span>
                     <h3>¿Qué es Ciencia?</h3>
                 </div>
-                <p>Conjunto de conocimientos objetivos, sistemáticos y verificables sobre la naturaleza y la sociedad. Articula la observación rigurosa con la razón para explicar, predecir y comprender los fenómenos.</p>
+                <p>Conjunto de conocimientos objetivos, sistemáticos y verificables sobre la naturaleza y la sociedad. Articula la observación rigurosa con la razón para explicar, predecir y comprender los fenómenos de la realidad.</p>
                 <span class="autor">(Estrada y Estrada, 2022)</span>
             </div>
 
@@ -286,11 +277,11 @@
                     <span class="card-number">02</span>
                     <h3>¿Qué es Conocimiento?</h3>
                 </div>
-                <p>Producto del proceso donde el sujeto aprehende la realidad. Al someterse al rigor metodológico, trasciende el sentido común y se valida como conocimiento científico.</p>
+                <p>Producto del proceso donde el sujeto aprehende la realidad. Al someterse al rigor metodológico, trasciende el sentido común y se valida como conocimiento científico dentro de una comunidad académica.</p>
                 <span class="autor">(Sánchez-Martín, 2023)</span>
             </div>
 
-            <!-- 3. Método (Oscuro) -->
+            <!-- 3. Método Científico (Oscuro) -->
             <div class="card">
                 <div class="icon-box">
                     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -323,7 +314,7 @@
                 </div>
                 <div class="card-title-row">
                     <span class="card-number">05</span>
-                    <h3>Positivista</h3>
+                    <h3>Paradigma Positivista</h3>
                 </div>
                 <p>Concibe las teorías como verdades absolutas. La realidad es objetiva y fragmentable. El investigador es neutral. Busca explicar, predecir y controlar mediante el enfoque cuantitativo y la estadística.</p>
                 <span class="autor">(Miranda y Ortiz, 2020)</span>
@@ -336,9 +327,9 @@
                 </div>
                 <div class="card-title-row">
                     <span class="card-number">06</span>
-                    <h3>Interpretativo</h3>
+                    <h3>Paradigma Interpretativo</h3>
                 </div>
-                <p>Construcción de la realidad en las subjetividades. Busca comprender el significado de las acciones humanas. El investigador se implica, usando enfoques cualitativos como la hermenéutica.</p>
+                <p>Construcción de la realidad en las subjetividades. Busca comprender el significado de las acciones humanas. El investigador se implica, usando enfoques cualitativos como la hermenéutica y la fenomenología.</p>
                 <span class="autor">(Miranda y Ortiz, 2020)</span>
             </div>
 
@@ -349,7 +340,7 @@
                 </div>
                 <div class="card-title-row">
                     <span class="card-number">07</span>
-                    <h3>Sociocrítico</h3>
+                    <h3>Paradigma Sociocrítico</h3>
                 </div>
                 <p>Orientado a la emancipación y transformación social. La realidad está condicionada por estructuras de poder. El investigador es un agente de cambio comprometido que emplea la investigación-acción participativa.</p>
                 <span class="autor">(Miranda y Ortiz, 2020)</span>
@@ -362,7 +353,7 @@
                 </div>
                 <div class="card-title-row">
                     <span class="card-number">08</span>
-                    <h3>Emergente</h3>
+                    <h3>Paradigma Emergente</h3>
                 </div>
                 <p>Paradigma de la complejidad. Aborda la realidad educativa como un sistema dinámico e interconectado. Supera la fragmentación cuantitativa/cualitativa buscando la transdisciplinariedad y la multicausalidad.</p>
                 <span class="autor">(Miranda y Ortiz, 2020)</span>
