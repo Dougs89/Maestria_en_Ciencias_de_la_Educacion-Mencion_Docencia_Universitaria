@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Infografía Timeline - Fundamentos de la Investigación</title>
     <style>
-        /* RESET Y CONFIGURACIÓN DE DIMENSIONES EXACTAS (1080x1920) */
+        /* RESET Y DIMENSIONES EXACTAS DE CANVA (1080x1920) */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -13,68 +13,62 @@
         }
 
         body {
-            background-color: #d1d5db; /* Fondo exterior gris */
+            background-color: #9ca3af; /* Fondo exterior para visualizar el lienzo */
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            align-items: center;
             min-height: 100vh;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             padding: 20px;
         }
 
         .infografia-container {
             width: 1080px;
-            height: 1920px; /* Altura fija tipo Canva */
+            height: 1920px; /* Tamaño exacto de la plantilla */
             background-color: #f8fafc;
-            padding: 50px 40px 30px 40px;
+            padding: 40px;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            overflow: hidden; /* Bloquea cualquier desbordamiento */
             position: relative;
         }
 
         /* ENCABEZADO */
         .header {
+            height: 130px; /* Altura fija para el encabezado */
             text-align: center;
-            margin-bottom: 30px;
             flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .header h1 {
-            font-size: 60px;
+            font-size: 50px;
             color: #1e293b;
             font-weight: 900;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             line-height: 1;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .header h2 {
-            font-size: 30px;
+            font-size: 26px;
             color: #475569;
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
 
-        .header-line {
-            width: 400px;
-            height: 5px;
-            background-color: #1e293b;
-            margin: 20px auto 0 auto;
-            border-radius: 2px;
-            clip-path: polygon(0 20%, 10% 0, 20% 30%, 30% 10%, 40% 40%, 50% 0, 60% 20%, 70% 10%, 80% 30%, 90% 0, 100% 20%, 100% 100%, 0 100%);
-        }
-
-        /* ÁREA DE LA LÍNEA DE TIEMPO (Ocupa el resto del espacio) */
+        /* LÍNEA DE TIEMPO (Ocupa el resto del espacio) */
         .timeline {
-            flex: 1; /* Toma todo el alto disponible */
+            flex: 1; /* Toma todo el alto restante */
+            display: grid;
+            grid-template-rows: repeat(8, 1fr); /* 8 filas de igual tamaño */
             position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* Distribuye los 8 items equitativamente */
-            padding: 10px 0;
+            margin-top: 20px;
         }
 
         /* Línea vertical central */
@@ -87,114 +81,123 @@
             width: 4px;
             background-color: #1e293b;
             transform: translateX(-50%);
-            border-radius: 2px;
             z-index: 1;
         }
 
-        /* BLOQUES (ITEMS) */
-        .item {
-            width: 46%; /* Ancho de cada caja para dejar espacio al centro */
-            padding: 22px 28px;
-            border-radius: 18px;
+        /* Filas de la línea de tiempo */
+        .row {
+            display: flex;
+            align-items: center; /* Centra la caja verticalmente en la fila */
             position: relative;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
-            z-index: 2;
-            /* Borde sutil para dar formalidad */
-            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .item.left {
-            align-self: flex-start;
+        .row.left {
+            justify-content: flex-start;
         }
 
-        .item.right {
-            align-self: flex-end;
+        .row.right {
+            justify-content: flex-end;
         }
 
-        /* Puntos conectores en la línea central */
-        .item::after {
+        /* Punto central (se dibuja en el centro de cada fila) */
+        .row::after {
             content: '';
             position: absolute;
+            left: 50%;
             top: 50%;
-            transform: translateY(-50%);
-            width: 24px;
-            height: 24px;
+            transform: translate(-50%, -50%);
+            width: 16px;
+            height: 16px;
             background-color: #1e293b;
-            border: 5px solid #f8fafc;
+            border: 4px solid #f8fafc;
             border-radius: 50%;
             z-index: 3;
         }
 
-        /* Posicionamiento exacto de los puntos hacia la línea central */
-        .item.left::after {
-            right: -53px; /* Lo empuja a tocar la línea */
+        /* CAJAS DE CONTENIDO */
+        .box {
+            width: 47%; /* Ocupa casi la mitad del ancho para no dejar vacíos */
+            background-color: #e2e8f0;
+            padding: 12px 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+            z-index: 2;
+            position: relative;
         }
 
-        .item.right::after {
-            left: -53px;
+        /* Conector visual de la caja al punto central */
+        .box::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 35px;
+            height: 2px;
+            background-color: #1e293b;
+            transform: translateY(-50%);
+            z-index: 1;
         }
+        .row.left .box::before { right: -35px; }
+        .row.right .box::before { left: -35px; }
 
-        /* Gama de colores formales (Azules grisáceos, texto negro) */
-        .bg-1 { background-color: #e2e8f0; }
+        /* Colores de fondo (Gama de azules formales) */
+        .bg-1 { background-color: #f1f5f9; }
         .bg-2 { background-color: #e2e8f0; }
         .bg-3 { background-color: #cbd5e1; }
-        .bg-4 { background-color: #cbd5e1; }
-        .bg-5 { background-color: #b0c4de; }
-        .bg-6 { background-color: #b0c4de; }
-        .bg-7 { background-color: #93b4d7; }
-        .bg-8 { background-color: #93b4d7; }
+        .bg-4 { background-color: #b0c4de; }
+        .bg-5 { background-color: #93b4d7; }
+        .bg-6 { background-color: #7ba3ce; }
+        .bg-7 { background-color: #6292c6; }
+        .bg-8 { background-color: #4a81bd; }
 
-        /* Tipografía Interna */
-        .item h3 {
-            font-size: 24px;
+        /* Tipografía (Letra negra por norma) */
+        .box h3 {
+            font-size: 18px;
             color: #000000;
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-transform: uppercase;
         }
 
-        .item p {
-            font-size: 17px;
+        .box p {
+            font-size: 13.5px;
             color: #000000;
-            line-height: 1.5;
+            line-height: 1.4;
             text-align: justify;
+            margin: 0;
         }
 
-        .item.left p {
-            text-align-last: right;
-        }
-
-        .item.right p {
-            text-align-last: left;
-        }
-
-        .item .autor {
+        .box .autor {
             display: block;
-            font-size: 15px;
+            font-size: 11.5px;
             font-weight: bold;
             color: #1e293b;
             font-style: italic;
-            margin-top: 10px;
+            margin-top: 6px;
+            text-align: right;
         }
 
         /* PIE DE PÁGINA */
         .footer {
+            height: 70px; /* Altura fija */
             flex-shrink: 0;
-            text-align: center;
-            border-top: 3px solid #cbd5e1;
-            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            border-top: 2px solid #cbd5e1;
             margin-top: 15px;
+            padding-top: 10px;
         }
 
         .footer p {
-            font-size: 18px;
+            font-size: 15px;
             color: #1e293b;
             font-weight: bold;
-            margin: 5px 0;
+            margin: 2px 0;
         }
 
         .footer .subtitle {
-            font-size: 16px;
+            font-size: 13px;
             color: #475569;
             font-weight: normal;
         }
@@ -208,66 +211,81 @@
         <div class="header">
             <h1>FUNDAMENTOS</h1>
             <h2>INVESTIGACIÓN CIENTÍFICA</h2>
-            <div class="header-line"></div>
         </div>
 
-        <!-- LÍNEA DE TIEMPO ZIGZAG -->
+        <!-- LÍNEA DE TIEMPO -->
         <div class="timeline">
             
             <!-- 1. Ciencia -->
-            <div class="item left bg-1">
-                <h3>¿Qué es Ciencia?</h3>
-                <p>Conjunto de conocimientos objetivos, sistemáticos y verificables sobre la naturaleza y la sociedad. Articula la observación rigurosa con la razón para explicar, predecir y comprender los fenómenos de la realidad.</p>
-                <span class="autor">(Estrada y Estrada, 2022)</span>
+            <div class="row left">
+                <div class="box bg-1">
+                    <h3>¿Qué es Ciencia?</h3>
+                    <p>Conjunto de conocimientos objetivos, sistemáticos y verificables sobre la naturaleza y la sociedad. Articula la observación rigurosa con la razón para explicar y predecir fenómenos.</p>
+                    <span class="autor">(Estrada y Estrada, 2022)</span>
+                </div>
             </div>
 
             <!-- 2. Conocimiento -->
-            <div class="item right bg-2">
-                <h3>¿Qué es Conocimiento?</h3>
-                <p>Producto del proceso donde el sujeto aprehende la realidad. Al someterse al rigor metodológico, trasciende el sentido común y se valida como conocimiento científico dentro de una comunidad académica.</p>
-                <span class="autor">(Sánchez-Martín, 2023)</span>
+            <div class="row right">
+                <div class="box bg-2">
+                    <h3>¿Qué es Conocimiento?</h3>
+                    <p>Producto del proceso donde el sujeto aprehende la realidad. Al someterse al rigor metodológico, trasciende el sentido común y se valida como conocimiento científico.</p>
+                    <span class="autor">(Sánchez-Martín, 2023)</span>
+                </div>
             </div>
 
             <!-- 3. Método Científico -->
-            <div class="item left bg-3">
-                <h3>Método Científico</h3>
-                <p>Proceso sistemático que parte de la observación de los hechos, formula hipótesis y las verifica mediante la recolección de datos. Garantiza que el conocimiento generado sea riguroso, replicable y fundamentado.</p>
-                <span class="autor">(Estrada y Estrada, 2022)</span>
+            <div class="row left">
+                <div class="box bg-3">
+                    <h3>Método Científico</h3>
+                    <p>Proceso sistemático que parte de la observación, formula hipótesis y las verifica mediante datos. Garantiza que el conocimiento generado sea riguroso y replicable.</p>
+                    <span class="autor">(Estrada y Estrada, 2022)</span>
+                </div>
             </div>
 
             <!-- 4. Paradigma -->
-            <div class="item right bg-4">
-                <h3>¿Qué es Paradigma?</h3>
-                <p>Suposiciones interrelacionadas sobre el mundo social que dan un marco filosófico a la investigación. Es la cosmovisión compartida por la comunidad científica que dicta el qué, cómo y para qué se investiga.</p>
-                <span class="autor">(Miranda y Ortiz, 2020)</span>
+            <div class="row right">
+                <div class="box bg-4">
+                    <h3>¿Qué es Paradigma?</h3>
+                    <p>Suposiciones interrelacionadas sobre el mundo social que dan un marco filosófico a la investigación. Es la cosmovisión compartida que dicta el qué, cómo y para qué investigar.</p>
+                    <span class="autor">(Miranda y Ortiz, 2020)</span>
+                </div>
             </div>
 
             <!-- 5. Positivista -->
-            <div class="item left bg-5">
-                <h3>Paradigma Positivista</h3>
-                <p>Concibe las teorías como verdades absolutas. La realidad es objetiva y fragmentable. El investigador es neutral. Busca explicar y predecir mediante el enfoque cuantitativo, la medición y la estadística.</p>
-                <span class="autor">(Miranda y Ortiz, 2020)</span>
+            <div class="row left">
+                <div class="box bg-5">
+                    <h3>Paradigma Positivista</h3>
+                    <p>Teorías como verdades absolutas. Realidad objetiva y fragmentable. Investigador neutral. Busca explicar, predecir y controlar usando el método cuantitativo y la estadística.</p>
+                    <span class="autor">(Miranda y Ortiz, 2020)</span>
+                </div>
             </div>
 
             <!-- 6. Interpretativo -->
-            <div class="item right bg-6">
-                <h3>Paradigma Interpretativo</h3>
-                <p>Basado en la construcción de la realidad desde las subjetividades. Busca comprender el significado de las acciones humanas. El investigador se implica, usando enfoques cualitativos como la hermenéutica.</p>
-                <span class="autor">(Miranda y Ortiz, 2020)</span>
+            <div class="row right">
+                <div class="box bg-6">
+                    <h3>Paradigma Interpretativo</h3>
+                    <p>Construcción de la realidad en las subjetividades. Busca comprender el significado de las acciones humanas. Investigador implicado. Usa el método cualitativo (hermenéutica).</p>
+                    <span class="autor">(Miranda y Ortiz, 2020)</span>
+                </div>
             </div>
 
             <!-- 7. Sociocrítico -->
-            <div class="item left bg-7">
-                <h3>Paradigma Sociocrítico</h3>
-                <p>Orientado a la emancipación y transformación social. La realidad está condicionada por estructuras de poder. El investigador es un agente de cambio comprometido que emplea la investigación-acción participativa.</p>
-                <span class="autor">(Miranda y Ortiz, 2020)</span>
+            <div class="row left">
+                <div class="box bg-7">
+                    <h3>Paradigma Sociocrítico</h3>
+                    <p>Orientado a la emancipación y transformación social. La realidad está condicionada por ideologías y poder. Investigador comprometido. Emplea la investigación-acción.</p>
+                    <span class="autor">(Miranda y Ortiz, 2020)</span>
+                </div>
             </div>
 
             <!-- 8. Emergente -->
-            <div class="item right bg-8">
-                <h3>Paradigma Emergente</h3>
-                <p>Paradigma de la complejidad. Aborda la realidad educativa como un sistema dinámico e interconectado. Supera la fragmentación cuantitativa/cualitativa buscando la transdisciplinariedad y la multicausalidad.</p>
-                <span class="autor">(Miranda y Ortiz, 2020)</span>
+            <div class="row right">
+                <div class="box bg-8">
+                    <h3>Paradigma Emergente</h3>
+                    <p>Aborda la realidad educativa como un sistema dinámico y multidimensional. Supera la fragmentación cuantitativa/cualitativa buscando la transdisciplinariedad.</p>
+                    <span class="autor">(Miranda y Ortiz, 2020)</span>
+                </div>
             </div>
 
         </div>
