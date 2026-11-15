@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía - Fundamentos de la Investigación Científica</title>
+    <style>
+        /* Estilos generales y configuración de dimensiones tipo Canva (1080x1920) */
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #d1d5db; /* Fondo exterior gris para contraste */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .infografia-container {
+            width: 1080px;
+            height: 1920px;
+            background-color: #ffffff;
+            padding: 60px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Encabezado */
+        .header {
+            text-align: center;
+            border-bottom: 4px solid #002b5c;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            color: #002b5c;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header h2 {
+            font-size: 24px;
+            color: #4a5568;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        /* Sección de Definiciones (Grid 2x2) */
+        .definiciones-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background-color: #f8f9fa;
+            border-left: 8px solid #002b5c;
+            padding: 25px;
+            border-radius: 4px;
+        }
+
+        .card h3 {
+            font-size: 26px;
+            color: #002b5c;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            font-size: 19px;
+            color: #1a202c;
+            line-height: 1.6;
+            text-align: justify;
+            margin: 0;
+        }
+
+        .cita {
+            display: block;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #4a5568;
+            font-weight: bold;
+        }
+
+        /* Sección de Tabla Comparativa */
+        .tabla-container {
+            margin-top: 50px;
+        }
+
+        .tabla-container h3 {
+            font-size: 28px;
+            color: #002b5c;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        th {
+            background-color: #002b5c;
+            color: #ffffff;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #002b5c;
+        }
+
+        td {
+            padding: 15px;
+            border: 1px solid #cbd5e0;
+            color: #1a202c;
+            text-align: justify;
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .dimension {
+            font-weight: bold;
+            color: #002b5c;
+            background-color: #edf2f7;
+            width: 20%;
+        }
+
+        /* Referencias y Pie de página */
+        .referencias {
+            margin-top: 40px;
+            border-top: 2px solid #cbd5e0;
+            padding-top: 20px;
+        }
+
+        .referencias h4 {
+            font-size: 18px;
+            color: #002b5c;
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .referencias p {
+            font-size: 14px;
+            color: #2d3748;
+            line-height: 1.5;
+            margin-bottom: 8px;
+            text-align: justify;
+            padding-left: 20px;
+            text-indent: -20px; /* Sangría francesa */
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #cbd5e0;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            font-size: 18px;
+            color: #1a202c;
+            font-weight: bold;
+        }
+
+        .footer span {
+            font-size: 16px;
+            color: #4a5568;
+            font-weight: normal;
+        }
+
+        a {
+            color: #002b5c;
+            text-decoration: none;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="infografia-container">
+        
+        <!-- ENCABEZADO -->
+        <div class="header">
+            <h1>Fundamentos de la Investigación Científica</h1>
+            <h2>Maestría en Ciencias de la Educación, Mención Docencia Universitaria | PRESAV - UNELLEZ</h2>
+        </div>
+
+        <!-- DEFINICIONES BÁSICAS -->
+        <div class="definiciones-grid">
+            <div class="card">
+                <h3>Ciencia</h3>
+                <p>Conjunto de conocimientos objetivos, sistemáticos y verificables acerca de la naturaleza, la sociedad y el pensamiento. Es una actividad intelectual que articula la observación rigurosa con la razón para explicar y predecir fenómenos, sometiendo sus postulados a constante contrastación empírica.
+                <span class="cita">(Estrada y Estrada, 2022)</span></p>
+            </div>
+            <div class="card">
+                <h3>Conocimiento</h3>
+                <p>Producto del proceso mediante el cual el sujeto aprehende la realidad. Cuando ese saber trasciende el sentido común y se somete a la contrastación empírica y al rigor metodológico, se convierte en conocimiento científico, caracterizado por su sistematicidad y capacidad de ser validado por una comunidad académica.
+                <span class="cita">(Sánchez-Martín, 2023)</span></p>
+            </div>
+            <div class="card">
+                <h3>Método Científico</h3>
+                <p>Proceso sistemático y estructurado que, partiendo de la observación de la realidad, permite formular hipótesis, deducir implicaciones lógicas y verificarlas mediante la recolección de datos. Su función esencial es garantizar que el conocimiento generado sea riguroso, fundamentado y replicable.
+                <span class="cita">(Estrada y Estrada, 2022)</span></p>
+            </div>
+            <div class="card">
+                <h3>Paradigma</h3>
+                <p>Conjunto de suposiciones interrelacionadas respecto al mundo social que proporciona un marco filosófico para el estudio organizado de este. Funciona como una cosmovisión compartida por una comunidad científica que determina qué se investiga, cómo se investiga y cómo se interpretan los resultados.
+                <span class="cita">(Miranda y Ortiz, 2020)</span></p>
+            </div>
+        </div>
+
+        <!-- TABLA COMPARATIVA DE PARADIGMAS -->
+        <div class="tabla-container">
+            <h3>Diferencias entre Tipos de Paradigmas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>DIMENSIÓN</th>
+                        <th>POSITIVISTA</th>
+                        <th>INTERPRETATIVO</th>
+                        <th>SOCIOCRÍTICO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="dimension">Naturaleza de la realidad</td>
+                        <td>Objetiva, única, fragmentable y regida por leyes naturales.</td>
+                        <td>Subjetiva, construida, múltiple y holística.</td>
+                        <td>Construida, condicionada por estructuras de poder e ideologías.</td>
+                    </tr>
+                    <tr>
+                        <td class="dimension">Finalidad</td>
+                        <td>Explicar, predecir y controlar fenómenos para generar leyes generales.</td>
+                        <td>Comprender e interpretar el significado que los sujetos dan a su realidad.</td>
+                        <td>Identificar el potencial de cambio, emancipar y transformar la realidad social.</td>
+                    </tr>
+                    <tr>
+                        <td class="dimension">Relación Investigador - Objeto</td>
+                        <td>Independencia y neutralidad. El investigador es externo.</td>
+                        <td>Dependencia e interrelación. El investigador se implica.</td>
+                        <td>Relación marcada por el compromiso. El investigador es agente de cambio.</td>
+                    </tr>
+                    <tr>
+                        <td class="dimension">Enfoque Metodológico</td>
+                        <td>Cuantitativo. Experimentación, estadística, medición.</td>
+                        <td>Cualitativo. Observación participante, entrevistas, análisis del discurso.</td>
+                        <td>Dialéctico y participativo. Investigación-acción, estudio de casos.</td>
+                    </tr>
+                    <tr>
+                        <td class="dimension">Criterios de Calidad</td>
+                        <td>Validez, fiabilidad y objetividad.</td>
+                        <td>Credibilidad, transferibilidad y confirmación.</td>
+                        <td>Intersubjetividad y validez consensuada.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- REFERENCIAS Y PIE DE PÁGINA -->
+        <div>
+            <div class="referencias">
+                <h4>Referencias Bibliográficas (Normas Harvard)</h4>
+                <p>Estrada, J. y Estrada, P. (2022). <i>El método científico</i>. Universidad Nacional de Chimborazo. Recuperado de: <a href="https://investigacion.unach.edu.ec/countlibros.php?id=208" target="_blank">https://investigacion.unach.edu.ec/countlibros.php?id=208</a></p>
+                <p>Miranda Beltrán, S. y Ortiz Bernal, J. A. (2020). Los paradigmas de la investigación: un acercamiento teórico para reflexionar desde el campo de la investigación educativa. <i>RIDE Revista Iberoamericana para la Investigación y el Desarrollo Educativo, 11</i>(21). <a href="https://doi.org/10.23913/ride.v11i21.717" target="_blank">https://doi.org/10.23913/ride.v11i21.717</a></p>
+                <p>Sánchez-Martín, M. (2023). <i>Epistemología de la Investigación Socioeducativa</i>. Zenodo. <a href="https://doi.org/10.5281/zenodo.7551869" target="_blank">https://doi.org/10.5281/zenodo.7551869</a></p>
+            </div>
+
+            <div class="footer">
+                <p>Elaborado por: Douglas Ruiz (V-19.357.613) y Marian Morales (V-18.486.245)</p>
+                <p><span>Subproyecto: Introducción a la Investigación | Módulo I</span></p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
