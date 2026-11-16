@@ -24,7 +24,8 @@
             width: 1080px;
             height: 1920px;
             background-color: #ffffff;
-            padding: 40px 50px;
+            /* Márgenes reducidos para dar espacio a la letra más grande */
+            padding: 35px 45px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -34,107 +35,107 @@
 
         /* Encabezado */
         .header { text-align: center; margin-bottom: 5px; }
-        .header h1 { font-size: 46px; color: #1e3a8a; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; line-height: 1.1; }
-        .header h2 { font-size: 20px; color: #475569; font-weight: 600; text-transform: uppercase; margin-top: 8px; }
+        .header h1 { font-size: 50px; color: #1e3a8a; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; line-height: 1.1; }
+        .header h2 { font-size: 22px; color: #475569; font-weight: 600; text-transform: uppercase; margin-top: 8px; }
 
         /* Subtítulos */
-        .section-title { font-size: 22px; font-weight: 800; color: #1e3a8a; text-transform: uppercase; text-align: center; margin-top: 10px; margin-bottom: 5px; }
+        .section-title { font-size: 26px; font-weight: 800; color: #1e3a8a; text-transform: uppercase; text-align: center; margin-top: 10px; margin-bottom: 5px; }
 
         /* Definiciones */
-        .definiciones-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex-shrink: 0; }
-        .card-def { background-color: #f8fafc; border-left: 6px solid #3b82f6; border-radius: 8px; padding: 20px 25px; display: flex; flex-direction: column; justify-content: space-between; }
+        .definiciones-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; flex-shrink: 0; }
+        .card-def { background-color: #f8fafc; border-left: 6px solid #3b82f6; border-radius: 8px; padding: 18px 22px; display: flex; flex-direction: column; justify-content: space-between; }
         .card-def:nth-child(2) { border-left-color: #8b5cf6; }
         .card-def:nth-child(3) { border-left-color: #10b981; }
         .card-def:nth-child(4) { border-left-color: #f59e0b; }
-        .card-def h3 { font-size: 20px; font-weight: 800; color: #1e293b; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-        .card-def h3 svg { width: 24px; height: 24px; stroke: #1e293b; stroke-width: 2; fill: none; }
-        .card-def p { font-size: 16.5px; color: #000000; line-height: 1.6; text-align: justify; margin-bottom: 15px; }
-        .card-def .cita { font-size: 14px; font-weight: bold; font-style: italic; color: #1e3a8a; text-align: right; margin-top: auto; }
+        .card-def h3 { font-size: 22px; font-weight: 800; color: #1e293b; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .card-def h3 svg { width: 26px; height: 26px; stroke: #1e293b; stroke-width: 2; fill: none; }
+        /* Letra aumentada */
+        .card-def p { font-size: 18px; color: #000000; line-height: 1.5; text-align: justify; margin-bottom: 12px; }
+        .card-def .cita { font-size: 15px; font-weight: bold; font-style: italic; color: #1e3a8a; text-align: right; margin-top: auto; }
 
         /* Paradigmas */
-        .paradigmas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex-grow: 1; }
-        .card-para { background-color: #ffffff; border: 2px solid #e2e8f0; border-radius: 12px; padding: 25px 30px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+        .paradigmas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; flex-grow: 1; }
+        .card-para { background-color: #ffffff; border: 2px solid #e2e8f0; border-radius: 12px; padding: 20px 25px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
         .card-para:nth-child(1) { border-top: 8px solid #60a5fa; }
         .card-para:nth-child(2) { border-top: 8px solid #a78bfa; }
         .card-para:nth-child(3) { border-top: 8px solid #34d399; }
         .card-para:nth-child(4) { border-top: 8px solid #fbbf24; }
-        .card-para h3 { font-size: 22px; font-weight: 800; color: #0f172a; text-transform: uppercase; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; position: relative; z-index: 2; }
-        .card-para h3 svg { width: 26px; height: 26px; stroke: #0f172a; stroke-width: 2; fill: none; }
-        .card-para p { font-size: 17px; color: #000000; line-height: 1.7; text-align: justify; position: relative; z-index: 2; margin-bottom: 15px; }
-        .card-para .cita { font-size: 14px; font-weight: bold; font-style: italic; color: #1e3a8a; text-align: right; position: relative; z-index: 2; margin-top: auto; }
+        .card-para h3 { font-size: 24px; font-weight: 800; color: #0f172a; text-transform: uppercase; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; position: relative; z-index: 2; }
+        .card-para h3 svg { width: 28px; height: 28px; stroke: #0f172a; stroke-width: 2; fill: none; }
+        /* Letra aumentada */
+        .card-para p { font-size: 18.5px; color: #000000; line-height: 1.5; text-align: justify; position: relative; z-index: 2; margin-bottom: 12px; }
+        .card-para .cita { font-size: 15px; font-weight: bold; font-style: italic; color: #1e3a8a; text-align: right; position: relative; z-index: 2; margin-top: auto; }
         .watermark { position: absolute; right: -20px; bottom: -20px; width: 180px; height: 180px; opacity: 0.04; z-index: 1; fill: #1e3a8a; }
 
         /* Tabla */
         .diferencias-section { flex-shrink: 0; display: flex; flex-direction: column; }
-        .diferencias-section h3 { font-size: 22px; font-weight: 800; color: #1e3a8a; text-transform: uppercase; margin-bottom: 15px; text-align: center; }
-        table { width: 100%; border-collapse: collapse; font-size: 15.5px; line-height: 1.6; }
-        th { background-color: #1e3a8a; color: #ffffff; padding: 15px 12px; text-align: center; vertical-align: middle; font-weight: 700; border: 1px solid #1e3a8a; }
-        td { padding: 15px 12px; border: 1px solid #cbd5e1; color: #000000; text-align: center; vertical-align: middle; }
+        .diferencias-section h3 { font-size: 26px; font-weight: 800; color: #1e3a8a; text-transform: uppercase; margin-bottom: 12px; text-align: center; }
+        /* Letra de la tabla aumentada */
+        table { width: 100%; border-collapse: collapse; font-size: 17px; line-height: 1.5; }
+        th { background-color: #1e3a8a; color: #ffffff; padding: 12px 10px; text-align: center; vertical-align: middle; font-weight: 700; border: 1px solid #1e3a8a; }
+        td { padding: 12px 10px; border: 1px solid #cbd5e1; color: #000000; text-align: center; vertical-align: middle; }
         tr:nth-child(even) { background-color: #f8fafc; }
         .dim { font-weight: 700; color: #1e3a8a; background-color: #f1f5f9; width: 18%; }
 
         /* Footer */
-        .footer { text-align: center; border-top: 3px solid #e2e8f0; padding-top: 15px; margin-top: 10px; }
-        .footer p { font-size: 16px; color: #1e3a8a; font-weight: 800; margin-bottom: 5px; text-transform: uppercase; }
-        .footer .sub { font-size: 14px; color: #64748b; font-weight: 600; text-transform: none; margin-bottom: 0; }
+        .footer { text-align: center; border-top: 3px solid #e2e8f0; padding-top: 12px; margin-top: 8px; }
+        .footer p { font-size: 18px; color: #1e3a8a; font-weight: 800; margin-bottom: 3px; text-transform: uppercase; }
+        .footer .sub { font-size: 16px; color: #64748b; font-weight: 600; text-transform: none; margin-bottom: 0; }
+        .footer .sub-project { font-size: 14px; color: #94a3b8; font-weight: 600; text-transform: none; margin-top: 4px; }
 
         /* Enlaces */
         a { color: inherit; text-decoration: none; }
 
 
         /* =========================================
-           VERSIÓN MÓVIL (Oculta por defecto)
+           VERSIÓN MÓVIL
            ========================================= */
         .mobile-layout {
-            display: none; /* Se activa en pantallas pequeñas */
+            display: none;
             padding: 20px;
             background-color: #ffffff;
             min-height: 100vh;
         }
 
-        .mobile-layout .header h1 { font-size: 32px; margin-bottom: 10px; }
-        .mobile-layout .header h2 { font-size: 16px; margin-bottom: 20px; }
+        .mobile-layout .header h1 { font-size: 34px; margin-bottom: 10px; }
+        .mobile-layout .header h2 { font-size: 18px; margin-bottom: 20px; }
         
         .mobile-layout .card-def, 
         .mobile-layout .card-para {
             margin-bottom: 15px;
             padding: 20px;
-            height: auto; /* Altura automática en móvil */
+            height: auto;
         }
 
         .mobile-layout .definiciones-grid, 
         .mobile-layout .paradigmas-grid {
             display: flex;
-            flex-direction: column; /* Una sola columna */
+            flex-direction: column;
         }
 
         .mobile-layout .card-def h3, 
-        .mobile-layout .card-para h3 { font-size: 18px; }
+        .mobile-layout .card-para h3 { font-size: 20px; }
 
         .mobile-layout .card-def p, 
-        .mobile-layout .card-para p { font-size: 15px; line-height: 1.5; }
+        .mobile-layout .card-para p { font-size: 17px; line-height: 1.5; }
 
-        /* Tabla responsive en móvil (scroll horizontal si es necesario) */
         .mobile-layout .table-wrapper {
             width: 100%;
             overflow-x: auto;
             margin-bottom: 20px;
         }
-        .mobile-layout table { min-width: 600px; font-size: 13px; }
+        .mobile-layout table { min-width: 600px; font-size: 15px; }
         .mobile-layout th, .mobile-layout td { padding: 10px; }
 
 
         /* =========================================
            MEDIA QUERIES
            ========================================= */
-
-        /* Mostrar versión móvil en pantallas menores a 1100px */
         @media screen and (max-width: 1100px) {
             .desktop-layout { display: none; }
             .mobile-layout { display: block; }
         }
 
-        /* Reglas de Impresión (Siempre toma la versión Desktop) */
         @media print {
             @page { size: portrait; margin: 0; }
             body { background-color: #ffffff; }
@@ -154,7 +155,7 @@
 <body>
 
     <!-- =========================================
-         VERSIÓN ESCRITORIO (1080x1920)
+         VERSIÓN ESCRITORIO
          ========================================= -->
     <div class="desktop-layout">
         <div class="canvas">
@@ -256,19 +257,20 @@
             </div>
 
             <div class="footer">
-                <p>Elaborado por: Douglas Ruiz (V-19.357.613) y Marian Morales (V-18.437.458)</p>
-                <p class="sub">Subproyecto: Introducción a la Investigación | Módulo I</p>
+                <p>Maestrante: Douglas Ruiz C.I.: 19.357.613</p>
+                <p class="sub">Docente: Sra. María Salas</p>
+                <p class="sub-project">Subproyecto: Introducción a la Investigación | Módulo I</p>
             </div>
         </div>
     </div>
 
     <!-- =========================================
-         VERSIÓN MÓVIL (Se activa con CSS)
+         VERSIÓN MÓVIL
          ========================================= -->
     <div class="mobile-layout">
         <div class="header">
-            <h1>Fundamentos<br>de la Investigación<br>Científica</h1>
-            <h2>Maestría en Docencia Universitaria<br>PRESAV - UNELLEZ</h2>
+            <h1>Fundamentos de la<br>Investigación Científica</h1>
+            <h2>Maestría en Docencia Universitaria | PRESAV - UNELLEZ</h2>
         </div>
 
         <div class="definiciones-grid">
@@ -362,8 +364,9 @@
         </div>
 
         <div class="footer">
-            <p>Elaborado por: <br>Douglas Ruiz (V-19.357.613)<br>Marian Morales (V-18.437.458)</p>
-            <p class="sub">Subproyecto: Introducción a la Investigación | Módulo I</p>
+            <p>Maestrante: Douglas Ruiz C.I.: 19.357.613</p>
+            <p class="sub">Docente: Sra. María Salas</p>
+            <p class="sub-project">Subproyecto: Introducción a la Investigación | Módulo I</p>
         </div>
     </div>
 
