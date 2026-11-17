@@ -24,7 +24,6 @@
             width: 1080px;
             height: 1920px;
             background-color: #ffffff;
-            /* Márgenes reducidos para dar espacio a la letra más grande */
             padding: 35px 45px;
             display: flex;
             flex-direction: column;
@@ -49,7 +48,6 @@
         .card-def:nth-child(4) { border-left-color: #f59e0b; }
         .card-def h3 { font-size: 22px; font-weight: 800; color: #1e293b; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
         .card-def h3 svg { width: 26px; height: 26px; stroke: #1e293b; stroke-width: 2; fill: none; }
-        /* Letra aumentada */
         .card-def p { font-size: 18px; color: #000000; line-height: 1.5; text-align: justify; margin-bottom: 12px; }
         .card-def .cita { font-size: 15px; font-weight: bold; font-style: italic; color: #1e3a8a; text-align: right; margin-top: auto; }
 
@@ -62,7 +60,6 @@
         .card-para:nth-child(4) { border-top: 8px solid #fbbf24; }
         .card-para h3 { font-size: 24px; font-weight: 800; color: #0f172a; text-transform: uppercase; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; position: relative; z-index: 2; }
         .card-para h3 svg { width: 28px; height: 28px; stroke: #0f172a; stroke-width: 2; fill: none; }
-        /* Letra aumentada */
         .card-para p { font-size: 18.5px; color: #000000; line-height: 1.5; text-align: justify; position: relative; z-index: 2; margin-bottom: 12px; }
         .card-para .cita { font-size: 15px; font-weight: bold; font-style: italic; color: #1e3a8a; text-align: right; position: relative; z-index: 2; margin-top: auto; }
         .watermark { position: absolute; right: -20px; bottom: -20px; width: 180px; height: 180px; opacity: 0.04; z-index: 1; fill: #1e3a8a; }
@@ -70,7 +67,6 @@
         /* Tabla */
         .diferencias-section { flex-shrink: 0; display: flex; flex-direction: column; }
         .diferencias-section h3 { font-size: 26px; font-weight: 800; color: #1e3a8a; text-transform: uppercase; margin-bottom: 12px; text-align: center; }
-        /* Letra de la tabla aumentada */
         table { width: 100%; border-collapse: collapse; font-size: 17px; line-height: 1.5; }
         th { background-color: #1e3a8a; color: #ffffff; padding: 12px 10px; text-align: center; vertical-align: middle; font-weight: 700; border: 1px solid #1e3a8a; }
         td { padding: 12px 10px; border: 1px solid #cbd5e1; color: #000000; text-align: center; vertical-align: middle; }
@@ -79,8 +75,8 @@
 
         /* Footer */
         .footer { text-align: center; border-top: 3px solid #e2e8f0; padding-top: 12px; margin-top: 8px; }
-        .footer p { font-size: 18px; color: #1e3a8a; font-weight: 800; margin-bottom: 3px; text-transform: uppercase; }
-        .footer .sub { font-size: 16px; color: #64748b; font-weight: 600; text-transform: none; margin-bottom: 0; }
+        .footer-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .footer-info p { font-size: 18px; color: #1e3a8a; font-weight: 800; text-transform: uppercase; margin: 0; }
         .footer .sub-project { font-size: 14px; color: #94a3b8; font-weight: 600; text-transform: none; margin-top: 4px; }
 
         /* Enlaces */
@@ -126,6 +122,12 @@
         }
         .mobile-layout table { min-width: 600px; font-size: 15px; }
         .mobile-layout th, .mobile-layout td { padding: 10px; }
+
+        /* Footer Móvil */
+        .mobile-layout .footer { text-align: center; border-top: 3px solid #e2e8f0; padding-top: 15px; margin-top: 20px; }
+        .mobile-layout .footer-info { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+        .mobile-layout .footer-info p { font-size: 16px; color: #1e3a8a; font-weight: 800; text-transform: uppercase; margin: 0; }
+        .mobile-layout .sub-project { font-size: 14px; color: #94a3b8; font-weight: 600; text-transform: none; }
 
 
         /* =========================================
@@ -256,9 +258,12 @@
                 </table>
             </div>
 
+            <!-- FOOTER ACTUALIZADO -->
             <div class="footer">
-                <p>Maestrante: Douglas Ruiz C.I.: 19.357.613</p>
-                <p class="sub">Docente: Sra. María Salas</p>
+                <div class="footer-info">
+                    <p>Docente: Dra. María Salas</p>
+                    <p>Maestrante: Douglas Ruiz C.I.: 19.357.613</p>
+                </div>
                 <p class="sub-project">Subproyecto: Introducción a la Investigación | Módulo I</p>
             </div>
         </div>
@@ -363,9 +368,12 @@
             </div>
         </div>
 
+        <!-- FOOTER MÓVIL ACTUALIZADO -->
         <div class="footer">
-            <p>Maestrante: Douglas Ruiz C.I.: 19.357.613</p>
-            <p class="sub">Docente: Sra. María Salas</p>
+            <div class="footer-info">
+                <p>Docente: Dra. María Salas</p>
+                <p>Maestrante: Douglas Ruiz C.I.: 19.357.613</p>
+            </div>
             <p class="sub-project">Subproyecto: Introducción a la Investigación | Módulo I</p>
         </div>
     </div>
